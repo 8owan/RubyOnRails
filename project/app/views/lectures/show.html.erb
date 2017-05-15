@@ -1,0 +1,30 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contents:</strong>
+  <%= raw @lecture.contents %>
+</p>
+
+<p>
+  <strong>Attachments:</strong>
+       <%= link_to "Download", @lecture.attachments_url %>
+</p>
+
+
+    
+   
+    <%= link_to like_lecture_path(@lecture), class: 'glyphicon glyphicon-thumbs-up', method: :put do %> <%= @lecture.get_upvotes.size %><% end %>
+
+<%= link_to dislike_lecture_path(@lecture), class: 'glyphicon glyphicon-thumbs-down', method: :put do %> <%= @lecture.get_downvotes.size %> <% end %>
+    
+<div id="comments">
+  <h3> <%= @lecture.comments.count %> comments</h3>
+  <p> <%= render "comments/comments" %> </p>
+  <h3> Add Comment</h3>
+  <%= render "comments/form" %>
+</div>
+
+<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
+<%= link_to 'Back', lectures_path %>
+</div>
